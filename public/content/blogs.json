@@ -1,0 +1,54 @@
+[
+  {
+    "id": "b01",
+    "slug": "building-an-entrepreneurial-mindset",
+    "title": "Building an Entrepreneurial Mindset",
+    "author": "E-Cell LIET",
+    "date": "2026-09-15",
+    "category": "Entrepreneurship",
+    "excerpt": "Entrepreneurship starts with curiosity, problem-solving and the willingness to learn from every attempt.",
+    "content": [
+      "An entrepreneurial mindset is less about having a perfect idea and more about learning to identify problems, test assumptions and create value.",
+      "At E-Cell LIET, students can develop these habits through workshops, competitions, mentoring and practical projects."
+    ]
+  },
+  {
+    "id": "b02",
+    "slug": "from-campus-problem-to-startup-idea",
+    "title": "From a Campus Problem to a Startup Idea",
+    "author": "E-Cell LIET",
+    "date": "2026-09-08",
+    "category": "Startups",
+    "excerpt": "A simple framework for turning an everyday campus problem into a problem worth solving.",
+    "content": [
+      "Good startup ideas often begin with problems that people repeatedly experience.",
+      "Start by observing the problem, speaking with potential users, defining the smallest useful solution and testing it before investing heavily in development."
+    ]
+  },
+  {
+    "id": "b03",
+    "slug": "why-student-communities-matter",
+    "title": "Why Student Communities Matter",
+    "author": "E-Cell LIET",
+    "date": "2026-08-28",
+    "category": "Community",
+    "excerpt": "The right peer community can turn isolated ideas into collaborative experiments and real initiatives.",
+    "content": [
+      "Student communities create an environment for peer learning, collaboration and experimentation.",
+      "An active E-Cell can connect students with mentors, founders, industry professionals and other students who are willing to build."
+    ]
+  },
+  {
+    "id": "b04",
+    "slug": "learning-through-competitions",
+    "title": "Learning Through Entrepreneurship Competitions",
+    "author": "E-Cell LIET",
+    "date": "2026-08-18",
+    "category": "Events",
+    "excerpt": "Competitions can make entrepreneurship practical by turning ideas into time-bound challenges.",
+    "content": [
+      "Entrepreneurship competitions provide a structured environment to research, build, present and receive feedback.",
+      "The experience can help students strengthen communication, teamwork, problem-solving and execution skills."
+    ]
+  }
+]

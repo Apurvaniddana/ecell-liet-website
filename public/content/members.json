@@ -1,0 +1,281 @@
+[
+  {
+    "id": "m01",
+    "name": "M. Divya Sree",
+    "role": "President",
+    "group": "Leadership",
+    "bio": "Leads E-Cell strategy, activities and external coordination.",
+    "image": "/content/images/m01.jpeg",
+    "responsibilities": [
+      "Lead the E-Cell, define strategic goals, and oversee all activities.",
+      "Coordinate with faculty, external organizations, and student teams to ensure smooth execution of initiatives."
+    ]
+  },
+  {
+    "id": "m02",
+    "name": "Ommi Nirupama Gnana Prasuna",
+    "role": "Vice President",
+    "group": "Leadership",
+    "bio": "Supports E-Cell operations and cross-team coordination.",
+    "image": "",
+    "responsibilities": [
+      "Support the President in planning and managing E-Cell operations.",
+      "Supervise different departments and ensure effective communication and timely completion of tasks."
+    ]
+  },
+  
+  {
+    "id": "m04",
+    "name": "Boddeda Prudhvi",
+    "role": "Vice President",
+    "group": "Leadership",
+    "bio": "Supports planning, supervision and communication across teams.",
+    "image": "",
+    "responsibilities": [
+      "Support the President in planning and managing E-Cell operations.",
+      "Supervise different departments and ensure effective communication and timely completion of tasks."
+    ]
+  },
+  {
+    "id": "m05",
+    "name": "Paila Harshitha",
+    "role": "Innovation & Startup Lead",
+    "group": "Innovation",
+    "bio": "Guides startup ideas, mentoring activities and ideathons.",
+    "image": "",
+    "responsibilities": [
+      "Guide students in developing startup ideas and entrepreneurial skills.",
+      "Organize startup mentoring sessions, ideathons, and connect students with mentors and incubators."
+    ]
+  },
+  {
+    "id": "m06",
+    "name": "L. Ankitha",
+    "role": "Associate Innovation & Startup Lead",
+    "group": "Innovation",
+    "bio": "Supports startup mentoring and student idea development.",
+    "image": "",
+    "responsibilities": [
+      "Assist in coordinating startup support activities and mentoring programs.",
+      "Help identify innovative student ideas and maintain engagement with aspiring entrepreneurs."
+    ]
+  },
+  {
+    "id": "m07",
+    "name": "N. Neha",
+    "role": "Associate Innovation & Startup Lead",
+    "group": "Innovation",
+    "bio": "Supports startup mentoring and student idea development.",
+    "image": "",
+    "responsibilities": [
+      "Assist in coordinating startup support activities and mentoring programs.",
+      "Help identify innovative student ideas and maintain engagement with aspiring entrepreneurs."
+    ]
+  },
+  {
+    "id": "m08",
+    "name": "Neyyala Jayanth",
+    "role": "Operations & Documentation Lead",
+    "group": "Operations",
+    "bio": "Manages records, reports, scheduling and internal coordination.",
+    "image": "",
+    "responsibilities": [
+      "Manage internal operations, meeting records, reports, and official documentation.",
+      "Ensure proper planning, scheduling, and smooth coordination among all teams."
+    ]
+  },
+  {
+    "id": "m09",
+    "name": "Y. Bhavya Sri",
+    "role": "Associate Operations & Documentation Lead",
+    "group": "Operations",
+    "bio": "Supports documentation, records and event logistics.",
+    "image": "/content/images/m09.jpg",
+    "responsibilities": [
+      "Support documentation, maintain records, and assist in administrative tasks.",
+      "Coordinate logistics before and during events."
+    ]
+  },
+  {
+    "id": "m10",
+    "name": "Yashwanth Kandula",
+    "role": "Event Management Lead",
+    "group": "Events",
+    "bio": "Plans and executes workshops, competitions and networking events.",
+    "image": "/content/images/m10.jpg",
+    "responsibilities": [
+      "Plan, organize, and execute workshops, competitions, seminars, and networking events.",
+      "Coordinate with all departments to ensure successful event execution."
+    ]
+  },
+  {
+    "id": "m11",
+    "name": "Kushalavedas Potnuru",
+    "role": "Associate Event Management Lead",
+    "group": "Events",
+    "bio": "Supports venue, registration, volunteer and event logistics.",
+    "image": "/content/images/m11.jpg",
+    "responsibilities": [
+      "Handle venue management, registrations, volunteer coordination, and event logistics.",
+      "Ensure smooth execution of activities on event days."
+    ]
+  },
+  {
+    "id": "m12",
+    "name": "Behara Vamsi Krishna",
+    "role": "Associate Event Management Lead",
+    "group": "Events",
+    "bio": "Supports venue, registration, volunteer and event logistics.",
+    "image": "/content/images/m12.png",
+    "responsibilities": [
+      "Handle venue management, registrations, volunteer coordination, and event logistics.",
+      "Ensure smooth execution of activities on event days."
+    ]
+  },
+  {
+    "id": "m13",
+    "name": "Danthuluri Karthik Varma",
+    "role": "Design & Creative Lead",
+    "group": "Creative",
+    "bio": "Shapes E-Cell visual identity and creative communication.",
+    "image": "/content/images/m13.png",
+    "responsibilities": [
+      "Develop the visual identity of E-Cell through posters, presentations, and branding materials.",
+      "Maintain consistency across all creative content."
+    ]
+  },
+  {
+    "id": "m14",
+    "name": "Nithiksha Potunuru",
+    "role": "Associate Design & Creative Lead",
+    "group": "Creative",
+    "bio": "Supports posters, social creatives and branding campaigns.",
+    "image": "/content/images/m14.jpg",
+    "responsibilities": [
+      "Assist in designing social media posts, event creatives, and promotional materials.",
+      "Support branding initiatives and creative campaigns."
+    ]
+  },
+  {
+    "id": "m15",
+    "name": "N. Lakshmi",
+    "role": "Associate Design & Creative Lead",
+    "group": "Creative",
+    "bio": "Supports posters, social creatives and branding campaigns.",
+    "image": "/content/images/m15.jpg",
+    "responsibilities": [
+      "Assist in designing social media posts, event creatives, and promotional materials.",
+      "Support branding initiatives and creative campaigns."
+    ]
+  },
+  {
+    "id": "m16",
+    "name": "N. Sailaja",
+    "role": "Branding & Social Media Lead",
+    "group": "Branding",
+    "bio": "Manages online presence, content planning and audience engagement.",
+    "image": "/content/images/m16.jpg",
+    "responsibilities": [
+      "Manage E-Cell's online presence and develop branding strategies.",
+      "Plan content calendars, oversee social media campaigns, and increase audience engagement."
+    ]
+  },
+ 
+  {
+    "id": "m18",
+    "name": "Manyala Pavani",
+    "role": "Media Production Lead",
+    "group": "Media",
+    "bio": "Leads photography, videography and event content production.",
+    "image": "",
+    "responsibilities": [
+      "Capture and produce high-quality photos and videos for events.",
+      "Create promotional videos, reels, and highlight content showcasing E-Cell activities."
+    ]
+  },
+  {
+    "id": "m19",
+    "name": "Mantri Praneeth",
+    "role": "Associate Media Production Lead",
+    "group": "Media",
+    "bio": "Supports photography, editing and media archiving.",
+    "image": "/content/images/m19.jpg",
+    "responsibilities": [
+      "Assist in photography, videography, editing, and content production.",
+      "Maintain an organized media archive for future use."
+    ]
+  },
+  {
+    "id": "m20",
+    "name": "N. Apurva",
+    "role": "WebTech Lead",
+    "group": "Technology",
+    "bio": "Develops and maintains E-Cell digital platforms and technical systems.",
+    "image": "/content/images/m20.png",
+    "responsibilities": [
+      "Develop and maintain the E-Cell website and digital platforms.",
+      "Manage online registrations, technical integrations, and website updates."
+    ]
+  },
+  {
+    "id": "m21",
+    "name": "N. Sireesha",
+    "role": "Associate WebTech Lead",
+    "group": "Technology",
+    "bio": "Supports website development, troubleshooting and technical events.",
+    "image": "/content/images/m21.jpg",
+    "responsibilities": [
+      "Support website development, troubleshooting, and technical event requirements.",
+      "Assist in managing online forms, databases, and automation tools."
+    ]
+  },
+  {
+    "id": "m22",
+    "name": "M. Veda Gayatri",
+    "role": "Associate WebTech Lead",
+    "group": "Technology",
+    "bio": "Supports website development, troubleshooting and technical events.",
+    "image": "/content/images/m22.jpg",
+    "responsibilities": [
+      "Support website development, troubleshooting, and technical event requirements.",
+      "Assist in managing online forms, databases, and automation tools."
+    ]
+  },
+  {
+    "id": "m23",
+    "name": "KORIMILLI TEJA SRI SAI",
+    "role": "Partnerships & Industry Relations Lead",
+    "group": "Partnerships",
+    "bio": "Builds collaborations with startups, industry and entrepreneurial organizations.",
+    "image": "/content/images/m23.jpg",
+    "responsibilities": [
+      "Build collaborations with startups, incubators, industries, and entrepreneurial organizations.",
+      "Coordinate sponsorships, mentorship opportunities, and external partnerships."
+    ]
+  },
+  {
+    "id": "m24",
+    "name": "A. V S Akshar",
+    "role": "Marketing & Outreach Lead",
+    "group": "Marketing",
+    "bio": "Plans campus outreach and audience engagement campaigns.",
+    "image": "/content/images/m24.png",
+    "responsibilities": [
+      "Promote E-Cell initiatives across the campus and beyond.",
+      "Plan marketing campaigns, student outreach programs, and audience engagement strategies."
+    ]
+  },
+  
+  {
+    "id": "m26",
+    "name": "MIRTHIPATI SANDEEP",
+    "role": "Finance & Sponsorship Lead",
+    "group": "Finance",
+    "bio": "Manages budgets, financial records and sponsorship relationships.",
+    "image": "/content/images/m26.png",
+    "responsibilities": [
+      "Prepare budgets, manage financial records, and oversee event expenditures.",
+      "Secure sponsorships and funding by building relationships with potential partners."
+    ]
+  }
+]
