@@ -89,12 +89,41 @@ function Header() {
           {open ? <X /> : <Menu />}
         </button>
         <nav className={open ? "nav open" : "nav"}>
-          <Link className={location.pathname === "/" ? "active" : ""} to="/" onClick={() => setOpen(false)}>Home</Link>
-          {links.map(([href, label]) => (
-            <Link key={href} className={location.pathname === href ? "active" : ""} to={href} onClick={() => setOpen(false)}>{label}</Link>
-          ))}
-          <Link className="nav-cta" to="/blogs" onClick={() => setOpen(false)}>Explore E-Cell <ArrowUpRight size={16}/></Link>
-        </nav>
+  <Link
+    className={location.pathname === "/" ? "active" : ""}
+    to="/"
+    onClick={() => setOpen(false)}
+  >
+    Home
+  </Link>
+
+  {links.map(([href, label]) => (
+    <Link
+      key={href}
+      className={location.pathname === href ? "active" : ""}
+      to={href}
+      onClick={() => setOpen(false)}
+    >
+      {label}
+    </Link>
+  ))}
+
+  <Link
+    className={location.pathname === "/admin" ? "active admin-nav" : "admin-nav"}
+    to="/admin"
+    onClick={() => setOpen(false)}
+  >
+    Admin
+  </Link>
+
+  <Link
+    className="nav-cta"
+    to="/blogs"
+    onClick={() => setOpen(false)}
+  >
+    Explore E-Cell <ArrowUpRight size={16} />
+  </Link>
+</nav>
       </div>
     </header>
   );
