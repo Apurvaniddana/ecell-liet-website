@@ -452,8 +452,16 @@ function Admin() {
     accept="image/*"
     multiple
     onChange={(e) => {
-      const files = Array.from(e.target.files || []);
-      setImageFiles((previous) => [...previous, ...files]);
+      const selectedFiles = Array.from(e.target.files || []);
+
+      if (selectedFiles.length > 0) {
+        setImageFiles((previousFiles) => [
+          ...previousFiles,
+          ...selectedFiles,
+        ]);
+      }
+
+      // Allow selecting the same files again
       e.target.value = "";
     }}
   />
@@ -461,32 +469,18 @@ function Admin() {
 
 {imageFiles.length > 0 && (
   <div className="gallery-file-list">
-    <b>Selected photos ({imageFiles.length})</b>
+    <strong>{imageFiles.length} photo(s) selected</strong>
 
-    <div className="admin-gallery-preview">
+    <ul>
       {imageFiles.map((file, index) => (
-        <div key={`${file.name}-${index}`}>
-          <img
-            src={URL.createObjectURL(file)}
-            alt={file.name}
-          />
-          <button
-            type="button"
-            className="icon-btn danger"
-            title="Remove photo"
-            onClick={() =>
-              setImageFiles((previous) =>
-                previous.filter((_, i) => i !== index)
-              )
-            }
-          >
-            <X size={14} />
-          </button>
-        </div>
+        <li key={`${file.name}-${index}`}>
+          {file.name}
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 )}
+
 
         {imageFiles.length > 0 && <div className="gallery-file-list"><b>New photos selected ({imageFiles.length})</b><ul>{imageFiles.map((file,i)=><li key={`${file.name}-${i}`}>{file.name}</li>)}</ul></div>}
         {(form.images || []).length > 0 && <div className="gallery-file-list"><b>Photos already saved ({form.images.length})</b><div className="admin-gallery-preview">{form.images.map((url,i)=><div key={`${url}-${i}`}><img src={url} alt={`Saved gallery ${i+1}`}/><button type="button" className="icon-btn danger" title="Remove photo" onClick={()=>setForm({...form,images:form.images.filter((_,j)=>j!==i)})}><Trash2 size={14}/></button></div>)}</div></div>}
