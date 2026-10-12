@@ -110,76 +110,89 @@
 .admin-gallery-preview img{display:block;width:100%;height:95px;object-fit:cover;border-radius:8px;background:#eee}
 .admin-gallery-preview .icon-btn{position:absolute;right:4px;top:4px;background:#fff;border-radius:6px}
 
-/* Premium editorial blog gallery */
+
+/* =================================
+   E-CELL LIET — SEAMLESS PHOTO GALLERY
+   ================================= */
+
 .article-gallery {
-  width: min(820px, calc(100% - 40px));
-  margin: 48px auto 64px;
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
+  width: min(1100px, calc(100% - 48px));
+  margin: 42px auto 64px;
+  columns: 2;
+  column-gap: 10px;
 }
 
+/* Images flow vertically and sit close together */
 .article-gallery .article-gallery-item {
-  position: relative;
+  display: inline-block;
   width: 100%;
-  margin: 0;
+  margin: 0 0 10px;
+  padding: 0;
   overflow: hidden;
-  background: #f4f2ee;
-  border-radius: 3px;
+  break-inside: avoid;
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 
-/* Natural image proportions — no forced cropping */
+/* Keep original photo proportions */
 .article-gallery .article-gallery-item img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 680px;
+  max-height: none;
+  min-height: 0;
   object-fit: contain;
-  transition: transform 0.5s ease;
+  transition: transform 0.35s ease;
+}
+
+/* Subtle hover zoom */
+.article-gallery .article-gallery-item {
+  overflow: hidden;
 }
 
 .article-gallery .article-gallery-item:hover img {
-  transform: scale(1.02);
+  transform: scale(1.025);
 }
 
-/* Minimal magazine-style caption */
+/* Small captions beneath images */
 .article-gallery .article-gallery-item figcaption {
-  padding: 12px 2px 0;
-  color: #77736d;
+  padding: 7px 2px 5px;
+  color: #777;
   font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* One photo uses the full width */
+.article-gallery .article-gallery-item:only-child {
+  display: block;
+  width: 100%;
 }
 
 /* Tablet */
 @media (max-width: 768px) {
   .article-gallery {
-    width: calc(100% - 36px);
-    margin: 32px auto 44px;
-    gap: 26px;
+    width: calc(100% - 28px);
+    columns: 2;
+    column-gap: 7px;
   }
 
-  .article-gallery .article-gallery-item img {
-    max-height: 520px;
+  .article-gallery .article-gallery-item {
+    margin-bottom: 7px;
   }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
   .article-gallery {
-    width: calc(100% - 28px);
+    width: calc(100% - 20px);
+    columns: 1;
+    column-gap: 0;
     margin: 24px auto 36px;
-    gap: 22px;
   }
 
-  .article-gallery .article-gallery-item img {
-    max-height: 420px;
-  }
-
-  .article-gallery .article-gallery-item figcaption {
-    padding-top: 9px;
-    font-size: 10px;
+  .article-gallery .article-gallery-item {
+    margin-bottom: 10px;
   }
 }
 /* E-Cell and LIET logos */
