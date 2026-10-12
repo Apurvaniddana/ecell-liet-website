@@ -104,6 +104,7 @@ function Header() {
           {links.map(([href, label]) => (
             <Link key={href} className={location.pathname === href ? "active" : ""} to={href} onClick={() => setOpen(false)}>{label}</Link>
           ))}
+          <Link to="/admin">Admin</Link>
           <Link className="nav-cta" to="/blogs" onClick={() => setOpen(false)}>Explore E-Cell <ArrowUpRight size={16}/></Link>
         </nav>
       </div>
