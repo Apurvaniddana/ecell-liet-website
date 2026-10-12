@@ -17,13 +17,12 @@
     "role": "Vice President",
     "group": "Leadership",
     "bio": "Supports E-Cell operations and cross-team coordination.",
-    "image": "",
+    "image": "/content/images/m27.jpg",
     "responsibilities": [
       "Support the President in planning and managing E-Cell operations.",
       "Supervise different departments and ensure effective communication and timely completion of tasks."
     ]
   },
-  
   {
     "id": "m04",
     "name": "Boddeda Prudhvi",
@@ -180,14 +179,26 @@
       "Plan content calendars, oversee social media campaigns, and increase audience engagement."
     ]
   },
- 
+  {
+    "id": "m17",
+    "name": ".",
+    "role": "Associate Branding & Social Media Lead",
+    "group": "Branding",
+    "bio": "Name pending confirmation from the latest roles document.",
+    "image": "",
+    "placeholder": true,
+    "responsibilities": [
+      "Create and schedule content across social media platforms.",
+      "Monitor engagement and assist in community interaction."
+    ]
+  },
   {
     "id": "m18",
     "name": "Manyala Pavani",
     "role": "Media Production Lead",
     "group": "Media",
     "bio": "Leads photography, videography and event content production.",
-    "image": "",
+    "image": "/content/images/m29.jpg",
     "responsibilities": [
       "Capture and produce high-quality photos and videos for events.",
       "Create promotional videos, reels, and highlight content showcasing E-Cell activities."
@@ -265,7 +276,19 @@
       "Plan marketing campaigns, student outreach programs, and audience engagement strategies."
     ]
   },
-  
+  {
+    "id": "m25",
+    "name": "Name",
+    "role": "Associate Marketing & Outreach Lead",
+    "group": "Marketing",
+    "bio": "Name pending confirmation from the latest roles document.",
+    "image": "",
+    "placeholder": true,
+    "responsibilities": [
+      "Promote E-Cell initiatives across the campus and beyond.",
+      "Plan marketing campaigns, student outreach programs, and audience engagement strategies."
+    ]
+  },
   {
     "id": "m26",
     "name": "MIRTHIPATI SANDEEP",

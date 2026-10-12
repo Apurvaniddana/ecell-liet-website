@@ -55,6 +55,7 @@ function normalizeBlog(row) {
     id: row.id,
     date: stored.date || row.created_at?.slice(0, 10) || "",
     image: row.cover_image || stored.image || "",
+    images: Array.isArray(stored.images) ? stored.images : [],
     excerpt: stored.excerpt || "",
     content: paragraphs
   };
@@ -81,49 +82,30 @@ function Header() {
     <header className="header">
       <div className="topline">LIET · ENTREPRENEURSHIP · INNOVATION · LEADERSHIP · STUDENT COMMUNITY</div>
       <div className="container nav-wrap">
+        
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
-          <span className="brand-mark">E</span>
-          <span><b>E-CELL</b><small>LIET · LENDI INSTITUTE</small></span>
+          <img
+            src="/content/images/e-cell_liet_logo.png"
+            alt="E-Cell LIET Logo"
+            className="brand-logo ecell-logo"
+          />
+          <img
+            src="/content/images/lendi-symbol.png"
+            alt="Lendi Institute Logo"
+            className="brand-logo liet-logo"
+          />
         </Link>
+
         <button className="menu-btn" onClick={() => setOpen(!open)} aria-label="Toggle navigation">
           {open ? <X /> : <Menu />}
         </button>
         <nav className={open ? "nav open" : "nav"}>
-  <Link
-    className={location.pathname === "/" ? "active" : ""}
-    to="/"
-    onClick={() => setOpen(false)}
-  >
-    Home
-  </Link>
-
-  {links.map(([href, label]) => (
-    <Link
-      key={href}
-      className={location.pathname === href ? "active" : ""}
-      to={href}
-      onClick={() => setOpen(false)}
-    >
-      {label}
-    </Link>
-  ))}
-
-  <Link
-    className={location.pathname === "/admin" ? "active admin-nav" : "admin-nav"}
-    to="/admin"
-    onClick={() => setOpen(false)}
-  >
-    Admin
-  </Link>
-
-  <Link
-    className="nav-cta"
-    to="/blogs"
-    onClick={() => setOpen(false)}
-  >
-    Explore E-Cell <ArrowUpRight size={16} />
-  </Link>
-</nav>
+          <Link className={location.pathname === "/" ? "active" : ""} to="/" onClick={() => setOpen(false)}>Home</Link>
+          {links.map(([href, label]) => (
+            <Link key={href} className={location.pathname === href ? "active" : ""} to={href} onClick={() => setOpen(false)}>{label}</Link>
+          ))}
+          <Link className="nav-cta" to="/blogs" onClick={() => setOpen(false)}>Explore E-Cell <ArrowUpRight size={16}/></Link>
+        </nav>
       </div>
     </header>
   );
@@ -267,8 +249,9 @@ function Admin() {
   const [authMessage, setAuthMessage] = useState("");
   const [form, setForm] = useState({
     title:"", author:"E-Cell LIET", date:new Date().toISOString().slice(0,10),
-    category:"Entrepreneurship", excerpt:"", image:"", content:[""]
+    category:"Entrepreneurship", excerpt:"", image:"", images:[], content:[""]
   });
+  const [imageFiles, setImageFiles] = useState([]);
   const [editing,setEditing]=useState(null);
   const [message,setMessage]=useState("");
   const [saving,setSaving]=useState(false);
@@ -293,7 +276,7 @@ function Admin() {
 
   const blank = {
     title:"", author:"E-Cell LIET", date:new Date().toISOString().slice(0,10),
-    category:"Entrepreneurship", excerpt:"", image:"", content:[""]
+    category:"Entrepreneurship", excerpt:"", image:"", images:[], content:[""]
   };
 
   const slugify = (value) => value.toLowerCase().trim()
@@ -314,6 +297,7 @@ function Admin() {
   };
 
   const editBlog = (blog) => {
+    setImageFiles([]);
     setEditing(blog.id);
     setForm({
       title: blog.title || "",
@@ -322,13 +306,14 @@ function Admin() {
       category: blog.category || "Entrepreneurship",
       excerpt: blog.excerpt || "",
       image: blog.image || "",
+      images: Array.isArray(blog.images) ? blog.images : [],
       content: blog.content?.length ? blog.content : [""]
     });
     setMessage("");
     window.scrollTo({top:0,behavior:"smooth"});
   };
 
-  const reset = () => { setEditing(null); setForm(blank); setMessage(""); };
+  const reset = () => { setEditing(null); setForm(blank); setImageFiles([]); setMessage(""); };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -340,6 +325,26 @@ function Admin() {
 
     setSaving(true);
     setMessage("");
+
+    // Upload any selected gallery photos to the public Supabase Storage bucket.
+    const uploadedImages = [...(form.images || [])];
+    if (imageFiles.length) {
+      for (const file of imageFiles) {
+        const safeName = file.name.toLowerCase().replace(/[^a-z0-9._-]+/g, "-");
+        const path = `${Date.now()}-${Math.random().toString(36).slice(2,8)}-${safeName}`;
+        const { error: uploadError } = await supabase.storage.from("blog-images").upload(path, file, {
+          cacheControl: "3600", upsert: false, contentType: file.type || undefined
+        });
+        if (uploadError) {
+          setMessage(`Photo upload failed: ${uploadError.message}. Check the blog-images bucket and its Storage policies.`);
+          setSaving(false);
+          return;
+        }
+        const { data: publicData } = supabase.storage.from("blog-images").getPublicUrl(path);
+        if (publicData?.publicUrl) uploadedImages.push(publicData.publicUrl);
+      }
+    }
+
     const baseSlug = slugify(form.title);
     let slug = baseSlug;
 
@@ -357,6 +362,7 @@ function Admin() {
         date: form.date,
         excerpt: form.excerpt.trim(),
         image: form.image.trim(),
+        images: uploadedImages,
         paragraphs: form.content.filter(x=>x.trim())
       }),
       cover_image: form.image.trim() || null,
@@ -435,7 +441,10 @@ function Admin() {
         </div>
         <label>Title<input value={form.title} onChange={e=>setForm({...form,title:e.target.value})} placeholder="Enter blog title"/></label>
         <div className="admin-two"><label>Author<input value={form.author} onChange={e=>setForm({...form,author:e.target.value})}/></label><label>Date<input type="date" value={form.date} onChange={e=>setForm({...form,date:e.target.value})}/></label></div>
-        <div className="admin-two"><label>Category<input value={form.category} onChange={e=>setForm({...form,category:e.target.value})} placeholder="Entrepreneurship"/></label><label>Cover image URL<input value={form.image} onChange={e=>setForm({...form,image:e.target.value})} placeholder="https://..."/></label></div>
+        <div className="admin-two"><label>Category<input value={form.category} onChange={e=>setForm({...form,category:e.target.value})} placeholder="Entrepreneurship"/></label><label>Cover image URL (optional)<input value={form.image} onChange={e=>setForm({...form,image:e.target.value})} placeholder="https://..."/></label></div>
+        <label>Gallery photos (select multiple)<input type="file" accept="image/*" multiple onChange={e=>setImageFiles(Array.from(e.target.files || []))}/></label>
+        {imageFiles.length > 0 && <div className="gallery-file-list"><b>New photos selected ({imageFiles.length})</b><ul>{imageFiles.map((file,i)=><li key={`${file.name}-${i}`}>{file.name}</li>)}</ul></div>}
+        {(form.images || []).length > 0 && <div className="gallery-file-list"><b>Photos already saved ({form.images.length})</b><div className="admin-gallery-preview">{form.images.map((url,i)=><div key={`${url}-${i}`}><img src={url} alt={`Saved gallery ${i+1}`}/><button type="button" className="icon-btn danger" title="Remove photo" onClick={()=>setForm({...form,images:form.images.filter((_,j)=>j!==i)})}><Trash2 size={14}/></button></div>)}</div></div>}
         <label>Short excerpt<textarea rows="3" value={form.excerpt} onChange={e=>setForm({...form,excerpt:e.target.value})} placeholder="Short description shown on the Blogs page"/></label>
         <label>Article content</label>
         <div className="paragraph-editor">{form.content.map((p,i)=><div className="paragraph-row" key={i}><textarea rows="5" value={p} onChange={e=>updateContent(i,e.target.value)} placeholder={`Paragraph ${i+1}`}/>{form.content.length>1 && <button type="button" className="icon-btn" onClick={()=>setForm({...form,content:form.content.filter((_,j)=>j!==i)})}><Trash2 size={16}/></button>}</div>)}</div>
@@ -507,6 +516,7 @@ function BlogDetail() {
     <PageHero kicker={blog.category.toUpperCase()} title={<>{blog.title}</>} text={`${blog.author} · ${new Date(blog.date).toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"})}`}/>
     <article className="article">
       <div className="article-cover-large" style={{backgroundImage:`url(${blog.image || "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=85"})`}}></div>
+      {(blog.images || []).length > 0 && <section className="article-gallery" aria-label="Article photo gallery">{blog.images.map((url,i)=><figure key={`${url}-${i}`}><img src={url} alt={`${blog.title} photo ${i+1}`} loading="lazy"/></figure>)}</section>}
       <div className="article-body">
         {blog.content.map((p,i)=><p className={i===0?"lead":""} key={i}>{p}</p>)}
 

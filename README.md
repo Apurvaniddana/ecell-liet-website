@@ -162,3 +162,35 @@ Open `/admin`, sign in with the Supabase Authentication user you created, and pu
 
 ## Comments
 The blog detail page now loads and posts comments through the Supabase `comments` table. The table uses `blog_id` to connect each comment to its blog.
+
+
+## Multiple photos in blog articles
+The Admin editor supports selecting multiple gallery photos for each blog. Uploaded photos are stored in the public Supabase Storage bucket named `blog-images`; gallery URLs are saved inside the existing `blogs.content` JSON, so no new database column is required. The existing `cover_image` remains the cover image.
+
+### One-time Supabase setup
+In Supabase → SQL Editor, run the following SQL while signed in as the project owner. It creates a public bucket and policies that allow public viewing and authenticated uploads/deletes. Since this site uses its Supabase Auth account for Admin, only sign in with the trusted E-Cell administrator account.
+
+```sql
+insert into storage.buckets (id, name, public)
+values ('blog-images', 'blog-images', true)
+on conflict (id) do update set public = true;
+
+create policy "Public can view blog images"
+on storage.objects for select
+using (bucket_id = 'blog-images');
+
+create policy "Authenticated admins can upload blog images"
+on storage.objects for insert to authenticated
+with check (bucket_id = 'blog-images');
+
+create policy "Authenticated admins can update blog images"
+on storage.objects for update to authenticated
+using (bucket_id = 'blog-images')
+with check (bucket_id = 'blog-images');
+
+create policy "Authenticated admins can delete blog images"
+on storage.objects for delete to authenticated
+using (bucket_id = 'blog-images');
+```
+
+If a policy already exists with one of these names, do not run the duplicate policy statement; check Storage → Policies first. The admin editor also accepts an optional external cover image URL.
