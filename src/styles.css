@@ -103,12 +103,85 @@
 .admin-gallery-preview>div{position:relative;min-width:0}
 .admin-gallery-preview img{display:block;width:100%;height:95px;object-fit:cover;border-radius:8px;background:#eee}
 .admin-gallery-preview .icon-btn{position:absolute;right:4px;top:4px;background:#fff;border-radius:6px}
-.article-gallery{width:min(1000px,calc(100% - 48px));margin:0 auto 45px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.article-gallery figure{margin:0;min-width:0;overflow:hidden;background:#eee;border-radius:4px}
-.article-gallery img{display:block;width:100%;height:100%;min-height:260px;max-height:520px;object-fit:cover}
-.article-gallery figure:first-child:nth-last-child(odd){grid-column:1/-1}
-.article-gallery figure:first-child:nth-last-child(odd) img{max-height:560px}
-@media(max-width:600px){.article-gallery{width:calc(100% - 30px);grid-template-columns:1fr;gap:12px}.article-gallery figure:first-child:nth-last-child(odd){grid-column:auto}.article-gallery img{min-height:220px;max-height:380px}.admin-gallery-preview{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.gallery-file-list{border:1px solid var(--line);background:#faf9f5;border-radius:12px;padding:14px;margin:-4px 0 18px;font-size:13px}
+.gallery-file-list ul{margin:8px 0 0;padding-left:20px;color:#666}
+.admin-gallery-preview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+.admin-gallery-preview>div{position:relative;min-width:0}
+.admin-gallery-preview img{display:block;width:100%;height:95px;object-fit:cover;border-radius:8px;background:#eee}
+.admin-gallery-preview .icon-btn{position:absolute;right:4px;top:4px;background:#fff;border-radius:6px}
+
+/* Premium editorial blog gallery */
+.article-gallery {
+  width: min(820px, calc(100% - 40px));
+  margin: 48px auto 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.article-gallery .article-gallery-item {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #f4f2ee;
+  border-radius: 3px;
+}
+
+/* Natural image proportions — no forced cropping */
+.article-gallery .article-gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 680px;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.article-gallery .article-gallery-item:hover img {
+  transform: scale(1.02);
+}
+
+/* Minimal magazine-style caption */
+.article-gallery .article-gallery-item figcaption {
+  padding: 12px 2px 0;
+  color: #77736d;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .article-gallery {
+    width: calc(100% - 36px);
+    margin: 32px auto 44px;
+    gap: 26px;
+  }
+
+  .article-gallery .article-gallery-item img {
+    max-height: 520px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .article-gallery {
+    width: calc(100% - 28px);
+    margin: 24px auto 36px;
+    gap: 22px;
+  }
+
+  .article-gallery .article-gallery-item img {
+    max-height: 420px;
+  }
+
+  .article-gallery .article-gallery-item figcaption {
+    padding-top: 9px;
+    font-size: 10px;
+  }
+}
 /* E-Cell and LIET logos */
 .brand {
   display: flex;

@@ -443,7 +443,51 @@ function Admin() {
         <label>Title<input value={form.title} onChange={e=>setForm({...form,title:e.target.value})} placeholder="Enter blog title"/></label>
         <div className="admin-two"><label>Author<input value={form.author} onChange={e=>setForm({...form,author:e.target.value})}/></label><label>Date<input type="date" value={form.date} onChange={e=>setForm({...form,date:e.target.value})}/></label></div>
         <div className="admin-two"><label>Category<input value={form.category} onChange={e=>setForm({...form,category:e.target.value})} placeholder="Entrepreneurship"/></label><label>Cover image URL (optional)<input value={form.image} onChange={e=>setForm({...form,image:e.target.value})} placeholder="https://..."/></label></div>
-        <label>Gallery photos (select multiple)<input type="file" accept="image/*" multiple onChange={e=>setImageFiles(Array.from(e.target.files || []))}/></label>
+        
+
+<label>
+  Gallery photos — select multiple images
+  <input
+    type="file"
+    accept="image/*"
+    multiple
+    onChange={(e) => {
+      const files = Array.from(e.target.files || []);
+      setImageFiles((previous) => [...previous, ...files]);
+      e.target.value = "";
+    }}
+  />
+</label>
+
+{imageFiles.length > 0 && (
+  <div className="gallery-file-list">
+    <b>Selected photos ({imageFiles.length})</b>
+
+    <div className="admin-gallery-preview">
+      {imageFiles.map((file, index) => (
+        <div key={`${file.name}-${index}`}>
+          <img
+            src={URL.createObjectURL(file)}
+            alt={file.name}
+          />
+          <button
+            type="button"
+            className="icon-btn danger"
+            title="Remove photo"
+            onClick={() =>
+              setImageFiles((previous) =>
+                previous.filter((_, i) => i !== index)
+              )
+            }
+          >
+            <X size={14} />
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
         {imageFiles.length > 0 && <div className="gallery-file-list"><b>New photos selected ({imageFiles.length})</b><ul>{imageFiles.map((file,i)=><li key={`${file.name}-${i}`}>{file.name}</li>)}</ul></div>}
         {(form.images || []).length > 0 && <div className="gallery-file-list"><b>Photos already saved ({form.images.length})</b><div className="admin-gallery-preview">{form.images.map((url,i)=><div key={`${url}-${i}`}><img src={url} alt={`Saved gallery ${i+1}`}/><button type="button" className="icon-btn danger" title="Remove photo" onClick={()=>setForm({...form,images:form.images.filter((_,j)=>j!==i)})}><Trash2 size={14}/></button></div>)}</div></div>}
         <label>Short excerpt<textarea rows="3" value={form.excerpt} onChange={e=>setForm({...form,excerpt:e.target.value})} placeholder="Short description shown on the Blogs page"/></label>
@@ -517,7 +561,22 @@ function BlogDetail() {
     <PageHero kicker={blog.category.toUpperCase()} title={<>{blog.title}</>} text={`${blog.author} · ${new Date(blog.date).toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"})}`}/>
     <article className="article">
       <div className="article-cover-large" style={{backgroundImage:`url(${blog.image || "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=85"})`}}></div>
-      {(blog.images || []).length > 0 && <section className="article-gallery" aria-label="Article photo gallery">{blog.images.map((url,i)=><figure key={`${url}-${i}`}><img src={url} alt={`${blog.title} photo ${i+1}`} loading="lazy"/></figure>)}</section>}
+      
+{(blog.images || []).length > 0 && (
+  <section className="article-gallery" aria-label="Article photo gallery">
+    {blog.images.map((url, i) => (
+      <figure className="article-gallery-item" key={`${url}-${i}`}>
+        <img
+          src={url}
+          alt={`${blog.title} photo ${i + 1}`}
+          loading="lazy"
+        />
+        <figcaption>Photo {i + 1}</figcaption>
+      </figure>
+    ))}
+  </section>
+)}
+
       <div className="article-body">
         {blog.content.map((p,i)=><p className={i===0?"lead":""} key={i}>{p}</p>)}
 
